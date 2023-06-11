@@ -21,7 +21,7 @@
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010019
   OUTPUT_DIRECTORY               = Build/$(PLATFORM_NAME)
-  SUPPORTED_ARCHITECTURES        = ARM
+  SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = PixelXLPkg/PixelXLPkg.fdf
@@ -63,10 +63,11 @@
   TpmMeasurementLib|MdeModulePkg/Library/TpmMeasurementLibNull/TpmMeasurementLibNull.inf
   VarCheckLib|MdeModulePkg/Library/VarCheckLib/VarCheckLib.inf
 
-  # SimpleFbDxe
-  FrameBufferBltLib|MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.inf
-
+   # Framebuffer
+  FrameBufferBltLib|PixelXLPkg/Library/FrameBufferBltLib/FrameBufferBltLib.inf
   SerialPortLib|PixelXLPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+  MemoryInitPeiLib|PixelXLPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  CompilerIntrinsicsLib|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
   PlatformBootManagerLib|PixelXLPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
 [LibraryClasses.common.SEC]
@@ -94,17 +95,15 @@
 [PcdsFixedAtBuild.common]
   gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"Alpha"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"Wolfy"
 
   # System Memory (4GB)
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0xE8000000
-  #gPixelXLPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x7CD00000
-  #gPixelXLPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x03300000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000
 
   # Bringup all cores :3
   gArmPlatformTokenSpaceGuid.PcdCoreCount|4
-  gArmPlatformTokenSpaceGuid.PcdClusterCount|2
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|1
 
   #
   # ARM PrimeCell
@@ -170,7 +169,7 @@
   #
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
-  MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
+#  MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
   EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf

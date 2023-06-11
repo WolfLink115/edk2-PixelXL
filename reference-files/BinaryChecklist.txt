@@ -1,0 +1,104 @@
+# AdcDxe
+# ArmCpuDxe
+# ArmGicDxe
+# ArmTimerDxe
+# ButtonsDxe
+# CapsuleRuntimeDxe
+# ChipInfoDxe
+# ClockDxe
+
+################
+ConPlatformDxe
+ConSplitterDxe
+################
+
+# DALSysDxe
+# DALTLMMDxe
+# DevicePathDxe
+
+##########
+DiskIoDxe
+##########
+
+# DisplayDxe
+
+##########
+DxeCore
+Ebl
+##########
+
+# EmbeddedMonotonicCounterDxe
+# EmuVariableRuntimeDxe
+
+###########
+EnglishDxe
+###########
+
+# EnvDxe
+
+#########
+Fastboot
+FatDxe
+#########
+
+# GlinkDxe
+
+###################
+GraphicsConsoleDxe
+HashDxe
+HiiDatabaseDxe
+###################
+
+# HWIODxeDriver
+# I2C
+
+#####
+Menu
+#####
+
+# MetronomeDxe
+
+##############
+NpaDxe
+PartitionDxe
+PcieDxe
+Pgm
+##############
+
+# PlatformInfoDxeDriver
+# PmicDxe
+# PrintDxe
+# QcomBds
+# RealTimeClock
+
+################
+ResetRuntimeDxe
+RngDxe
+RPMBErase
+RPMBProvision
+################
+
+# RuntimeDxe
+# SdccDxe
+
+######################
+SecurityDxe
+SimpleTextInOutSerial
+######################
+
+# SmemDxe
+# SPMI
+# TsensDxe
+# TzDxe
+# UFSDxe
+# ULogDxe
+
+##########
+UsbBusDxe
+##########
+
+# UsbConfigDxe
+# UsbDeviceDxe
+# UsbfnDwc3Dxe
+# UsbMsdDxe
+# WatchdogTimer

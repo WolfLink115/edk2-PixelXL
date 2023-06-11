@@ -1,7 +1,6 @@
 /** @file
 *
-*  Copyright (c) 2011, ARM Limited. All rights reserved.
-*  Copyright (c) 2019, RUIKAI LIU and MR TUNNEL. All rights reserved.
+*  Copyright (c) 2018, Linaro Limited. All rights reserved.
 *
 *  This program and the accompanying materials
 *  are licensed and made available under the terms and conditions of the BSD License
@@ -16,7 +15,40 @@
 #include <Library/ArmPlatformLib.h>
 #include <Library/DebugLib.h>
 #include <Library/HobLib.h>
+#include <Library/PcdLib.h>
+#include <Library/IoLib.h>
+#include <Library/MemoryAllocationLib.h>
 #include <Configuration/DeviceMemoryMap.h>
+
+// The total number of descriptors, including the final "end-of-table" descriptor.
+#define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS 64
+
+// DDR attributes
+#define DDR_ATTRIBUTES_CACHED           ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK
+#define DDR_ATTRIBUTES_UNCACHED         ARM_MEMORY_REGION_ATTRIBUTE_UNCACHED_UNBUFFERED
+
+
+// This is from lk's iomap.h
+#define PixelXL_PERIPH_BASE              0x00000000 // MSM_IOMAP_BASE   
+#define PixelXL_PERIPH_SZ                0x10000000 //  MSM_IOMAP_END - MSM_IOMAP_BASE   
+
+
+STATIC struct PixelXLPkgReservedMemory {
+  EFI_PHYSICAL_ADDRESS         Offset;
+  EFI_PHYSICAL_ADDRESS         Size;
+} PixelXLPkgReservedMemoryBuffer [] = {
+//  { 0x86000000, 0x00300000 },    // tz_apps_region
+//  { 0x06a00000, 0x00200000 },    // smem_region
+//  { 0x86400000, 0x00280000 },    // tz/hyp_region
+//  { 0x0000094c, 0x00000200 },    // MPSS/EFS/DHMS/PIL_region
+//  { 0x85A00000, 0x00E00000 },    // tz-apps_region
+//  { 0x86800000, 0x05400000 },    // mpss_region
+//  { 0x8bc00000, 0x00200000 },    // gps_region
+//  { 0x8be00000, 0x00600000 },    // wcnss_region
+//  { 0xfdce0000, 0x00004000 },    // venus_region
+  { 0x80400000, 0x00800000 },    // fb_region
+};
+
 /**
   Return the Virtual Memory Map of your platform
 
@@ -27,68 +59,109 @@
                                     entry
 
 **/
-
-STATIC
-VOID
-AddHob
-(
-    PARM_MEMORY_REGION_DESCRIPTOR_EX Desc
-)
-{
-	BuildResourceDescriptorHob(
-		Desc->ResourceType,
-		Desc->ResourceAttribute,
-		Desc->Address,
-		Desc->Length
-	);
-
-	BuildMemoryAllocationHob(
-		Desc->Address,
-		Desc->Length,
-		Desc->MemoryType
-	);
-}
-
 VOID
 ArmPlatformGetVirtualMemoryMap (
   IN ARM_MEMORY_REGION_DESCRIPTOR** VirtualMemoryMap
   )
 {
-  //TO-DO:ADD MEMORY MAP HERE
-    PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx = gDeviceMemoryDescriptorEx;
-    ARM_MEMORY_REGION_DESCRIPTOR MemoryDescriptor[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
-    UINTN Index = 0;
+  ARM_MEMORY_REGION_ATTRIBUTES  CacheAttributes;
+  ARM_MEMORY_REGION_DESCRIPTOR  *VirtualMemoryTable;
+  EFI_RESOURCE_ATTRIBUTE_TYPE   ResourceAttributes;
+  UINTN                         Index = 0, Count, ReservedTop;
+  EFI_PEI_HOB_POINTERS          NextHob;
+  UINT64                        ResourceLength;
+  EFI_PHYSICAL_ADDRESS          ResourceTop;
 
-    // Run through each memory descriptor
-    while (MemoryDescriptorEx->Address != (EFI_PHYSICAL_ADDRESS)0xFFFFFFFF)
+  ResourceAttributes = (
+    EFI_RESOURCE_ATTRIBUTE_PRESENT |
+    EFI_RESOURCE_ATTRIBUTE_INITIALIZED |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_COMBINEABLE |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |
+    EFI_RESOURCE_ATTRIBUTE_TESTED
+  );
+
+  // Create initial Base Hob for system memory.
+  BuildResourceDescriptorHob (
+    EFI_RESOURCE_SYSTEM_MEMORY,
+    ResourceAttributes,
+    PcdGet64 (PcdSystemMemoryBase),
+    PcdGet64 (PcdSystemMemorySize)
+  );
+
+  NextHob.Raw = GetHobList ();
+  Count = sizeof (PixelXLPkgReservedMemoryBuffer) / sizeof (struct PixelXLPkgReservedMemory);
+  while ((NextHob.Raw = GetNextHob (EFI_HOB_TYPE_RESOURCE_DESCRIPTOR, NextHob.Raw)) != NULL)
+  {
+    if (Index >= Count)
+      break;
+    if ((NextHob.ResourceDescriptor->ResourceType == EFI_RESOURCE_SYSTEM_MEMORY) &&
+        (PixelXLPkgReservedMemoryBuffer[Index].Offset >= NextHob.ResourceDescriptor->PhysicalStart) &&
+        ((PixelXLPkgReservedMemoryBuffer[Index].Offset + PixelXLPkgReservedMemoryBuffer[Index].Size) <=
+         NextHob.ResourceDescriptor->PhysicalStart + NextHob.ResourceDescriptor->ResourceLength))
     {
-        switch (MemoryDescriptorEx->HobOption)
-        {
-            case AddMem:
-			case AddDev:
-                AddHob(MemoryDescriptorEx);
-                break;
-            case NoHob:
-            default:
-                goto update;
-        }
+      ResourceAttributes = NextHob.ResourceDescriptor->ResourceAttribute;
+      ResourceLength = NextHob.ResourceDescriptor->ResourceLength;
+      ResourceTop = NextHob.ResourceDescriptor->PhysicalStart + ResourceLength;
+      ReservedTop = PixelXLPkgReservedMemoryBuffer[Index].Offset + PixelXLPkgReservedMemoryBuffer[Index].Size;
 
-    update:
-        ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
+      // Create the System Memory HOB for the reserved buffer
+      BuildResourceDescriptorHob (
+        EFI_RESOURCE_MEMORY_RESERVED,
+        EFI_RESOURCE_ATTRIBUTE_PRESENT,
+        PixelXLPkgReservedMemoryBuffer[Index].Offset,
+        PixelXLPkgReservedMemoryBuffer[Index].Size
+      );
+      // Update the HOB
+      NextHob.ResourceDescriptor->ResourceLength = PixelXLPkgReservedMemoryBuffer[Index].Offset -
+                                                   NextHob.ResourceDescriptor->PhysicalStart;
 
-        MemoryDescriptor[Index].PhysicalBase = MemoryDescriptorEx->Address;
-        MemoryDescriptor[Index].VirtualBase = MemoryDescriptorEx->Address;
-        MemoryDescriptor[Index].Length = MemoryDescriptorEx->Length;
-		MemoryDescriptor[Index].Attributes = MemoryDescriptorEx->ArmAttributes;
-
-        Index++;
-        MemoryDescriptorEx++;
+      // If there is some memory available on the top of the reserved memory then create a HOB
+      if (ReservedTop < ResourceTop)
+      {
+        BuildResourceDescriptorHob (EFI_RESOURCE_SYSTEM_MEMORY,
+                                    ResourceAttributes,
+                                    ReservedTop,
+                                    ResourceTop - ReservedTop);
+      }
+      Index++;
     }
+    NextHob.Raw = GET_NEXT_HOB (NextHob);
+  }
 
-    // Last one (terminator)
-    ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
-    
-    *VirtualMemoryMap = MemoryDescriptor;
-  //ASSERT(0);
+  ASSERT (VirtualMemoryMap != NULL);
+
+  VirtualMemoryTable = (ARM_MEMORY_REGION_DESCRIPTOR*)AllocatePages (
+                                                        EFI_SIZE_TO_PAGES (sizeof(ARM_MEMORY_REGION_DESCRIPTOR) * MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS)
+                                                        );
+  if (VirtualMemoryTable == NULL) {
+    return;
+  }
+
+  CacheAttributes = DDR_ATTRIBUTES_CACHED;
+
+  Index = 0;
+
+  // DDR - 4.0GB section
+  VirtualMemoryTable[Index].PhysicalBase    = PcdGet64 (PcdSystemMemoryBase);
+  VirtualMemoryTable[Index].VirtualBase     = PcdGet64 (PcdSystemMemoryBase);
+  VirtualMemoryTable[Index].Length          = PcdGet64 (PcdSystemMemorySize);
+  VirtualMemoryTable[Index].Attributes      = CacheAttributes;
+
+  // PixelXL SOC peripherals
+  VirtualMemoryTable[++Index].PhysicalBase  = PixelXL_PERIPH_BASE;
+  VirtualMemoryTable[Index].VirtualBase     = PixelXL_PERIPH_BASE;
+  VirtualMemoryTable[Index].Length          = PixelXL_PERIPH_SZ;
+  VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
+
+  // End of Table
+  VirtualMemoryTable[++Index].PhysicalBase  = 0;
+  VirtualMemoryTable[Index].VirtualBase     = 0;
+  VirtualMemoryTable[Index].Length          = 0;
+  VirtualMemoryTable[Index].Attributes      = (ARM_MEMORY_REGION_ATTRIBUTES)0;
+
+  ASSERT((Index + 1) <= MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS);
+
+  *VirtualMemoryMap = VirtualMemoryTable;
 }
 

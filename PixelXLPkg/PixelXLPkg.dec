@@ -37,11 +37,9 @@
 
 [PcdsFixedAtBuild.common]
   # Simple FrameBuffer
-  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x00400000|UINT32|0x0000a400
+  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x80400000|UINT32|0x0000a400
   gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440|UINT32|0x0000a401
   gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560|UINT32|0x0000a402
   gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
   gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleWidth|1440|UINT32|0x0000a404
   gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferVisibleHeight|2560|UINT32|0x0000a405
-  #gPixelXLPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x7CD00000|UINT64|0x00000a106
-  #gPixelXLPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x03300000|UINT32|0x00000a107

@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2011-2012, ARM Limited. All rights reserved.
+#  Copyright (c) 2011-2012, AARCH64 Limited. All rights reserved.
 #  Copyright (c) 2016, Hisilicon Limited. All rights reserved.
 #  Copyright (c) 2016, Linaro Limited. All rights reserved.
 #
@@ -59,7 +59,7 @@
 
   BaseMemoryLib|MdePkg/Library/BaseMemoryLibOptDxe/BaseMemoryLibOptDxe.inf
 
-  # ARM Architectural Libraries
+  # AARCH64 Architectural Libraries
   CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
   DefaultExceptionHandlerLib|ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf
   CpuExceptionHandlerLib|ArmPkg/Library/ArmExceptionLib/ArmExceptionLib.inf
@@ -72,7 +72,7 @@
 
   ResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
-  # ARM PL011 UART Driver
+  # AARCH64 PL011 UART Driver
   PL011UartClockLib|ArmPlatformPkg/Library/PL011UartClockLib/PL011UartClockLib.inf
   PL011UartLib|ArmPlatformPkg/Library/PL011UartLib/PL011UartLib.inf
 
@@ -121,9 +121,9 @@
   IniParsingLib|SignedCapsulePkg/Library/IniParsingLib/IniParsingLib.inf
 
   #
-  # It is not possible to prevent the ARM compiler for generic intrinsic functions.
+  # It is not possible to prevent the AARCH64 compiler for generic intrinsic functions.
   # This library provides the instrinsic functions generate by a given compiler.
-  # And NULL mean link this library into all ARM images.
+  # And NULL mean link this library into all AARCH64 images.
   #
   NULL|ArmPkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
 
@@ -223,16 +223,19 @@
   DebugLib|MdePkg/Library/DxeRuntimeDebugLibSerialPort/DxeRuntimeDebugLibSerialPort.inf
 !endif
 
-[LibraryClasses.ARM]
+[LibraryClasses.AARCH64]
   ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
 
 [BuildOptions]
   RVCT:RELEASE_*_*_CC_FLAGS  = -DMDEPKG_NDEBUG
   GCC:RELEASE_*_*_CC_FLAGS  = -DMDEPKG_NDEBUG
 
+[BuildOptions.common]
+  GCC:*_*_AARCH64_CC_FLAGS = -fno-stack-protector -w
+  GCC:*_*_AARCH64_DLINK_FLAGS = -fno-stack-protector
+
 [BuildOptions.common.EDKII.DXE_RUNTIME_DRIVER]
-  GCC:*_*_ARM_DLINK_FLAGS = -z common-page-size=0x1000
-  ; GCC:*_*_AARCH64_DLINK_FLAGS = -z common-page-size=0x10000
+  GCC:*_*_AARCH64_DLINK_FLAGS = -z common-page-size=0x10000
 
 ################################################################################
 #
