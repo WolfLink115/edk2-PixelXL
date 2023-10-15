@@ -18,7 +18,7 @@ jobs:
     - name: install deps
       run: |
        sudo apt-get update
-       sudo apt-get -y install build-essential uuid-dev iasl git nasm python3-distutils gcc-aarch64-linux-gnu mkbootimg
+       sudo apt-get -y install abootimg build-essential uuid-dev iasl git nasm python3-distutils gcc-aarch64-linux-gnu mkbootimg
     - name: mkdir edk2stuff
       run: |
         mkdir /home/runner/work/edk2stuff
