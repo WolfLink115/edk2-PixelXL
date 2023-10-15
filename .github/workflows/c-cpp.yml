@@ -1,0 +1,45 @@
+name: Build UEFI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: install deps
+      run: |
+       sudo apt-get update
+       sudo apt-get -y install build-essential uuid-dev iasl git nasm python3-distutils gcc-aarch64-linux-gnu mkbootimg
+    - name: mkdir edk2stuff
+      run: |
+        mkdir /home/runner/work/edk2stuff
+    - name: clone sources
+      run: |
+        cd /home/runner/work/edk2stuff
+        git clone https://github.com/Tianocore/edk2.git --recurse --depth=1 /home/runner/work/edk2stuff/edk2
+        git clone https://github.com/WolfLink115/edk2-pixelxl.git /home/runner/work/edk2stuff/edk2-pixelxl
+        git clone https://github.com/tianocore/edk2-platforms.git /home/runner/work/edk2stuff/edk2-platforms
+    - name: make BaseTools
+      run: |
+        cd /home/runner/work/edk2stuff/edk2
+        make -C /home/runner/work/edk2stuff/edk2/BaseTools/
+    - name: build edk2
+      run: |
+        cd /home/runner/work/edk2stuff/edk2-pixelxl
+        export PACKAGES_PATH=$PWD/home/runner/work/edk2stuff/edk2:$PWD/home/runner/work/edk2stuff/edk2-platforms:$PWD
+        export WORKSPACE=$PWD/home/runner/work/edk2stuff/edk2-pixelxl/workspace
+        . /home/runner/work/edk2stuff/edk2/edksetup.sh
+        ./build.sh
+    - uses: actions/upload-artifact@v3
+      with:
+        name: uefi.img
+        path: /home/runner/work/edk2stuff/edk2-pixelxl/uefi.img
