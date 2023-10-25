@@ -30,7 +30,7 @@
 
 // This is from lk's iomap.h
 #define PixelXL_PERIPH_BASE              0x00000000 // MSM_IOMAP_BASE   
-#define PixelXL_PERIPH_SZ                0x10000000 //  MSM_IOMAP_END - MSM_IOMAP_BASE   
+#define PixelXL_PERIPH_SZ                0x10000000 // MSM_IOMAP_END - MSM_IOMAP_BASE   
 
 
 STATIC struct PixelXLPkgReservedMemory {

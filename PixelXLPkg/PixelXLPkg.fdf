@@ -25,7 +25,7 @@
 ################################################################################
 
 [FD.PixelXLPkg_UEFI]
-BaseAddress   = 0xd0000000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
+BaseAddress   = 0x80008000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
 Size          = 0x00200000|gArmTokenSpaceGuid.PcdFdSize         # The size in bytes of the FLASH Device
 ErasePolarity = 1
 
@@ -109,30 +109,30 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
   INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
-#  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
-#  INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-#  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
-#  INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-#  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
-#  INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-#  INF FatPkg/EnhancedFatDxe/Fat.inf
-#  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
+  INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
+  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+  INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
+  INF FatPkg/EnhancedFatDxe/Fat.inf
+  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
-#  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-#  INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-#  INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-#  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#  INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
-#  INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
-#  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-#  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-#  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
+  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+  INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
+  INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
+  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 
-    FILE DRIVER = 90A49AFD-422F-08AE-9611-E788D3804845 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/EnvDxe/EnvDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/EnvDxe/EnvDxe.efi
-      SECTION UI = "EnvDxe"
-    }
+#    FILE DRIVER = 90A49AFD-422F-08AE-9611-E788D3804845 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/EnvDxe/EnvDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/EnvDxe/EnvDxe.efi
+#      SECTION UI = "EnvDxe"
+#    }
 
     FILE DRIVER = 51CCF399-4FDF-4E55-A45B-E123F84D456A {
       SECTION PE32 = PixelXLPkg/Binary/ConPlatformDxe/ConPlatformDxe.efi
@@ -179,171 +179,168 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "GraphicsConsoleDxe"
     }
 
-    FILE DRIVER = 3ADF8DDA-1850-44C5-8C63-BB991849BC6F {
-      SECTION PE32 = PixelXLPkg/Binary/HashDxe/HashDxe.efi
-      SECTION UI = "HashDxe"
-    }
+#    FILE DRIVER = 3ADF8DDA-1850-44C5-8C63-BB991849BC6F {
+#      SECTION PE32 = PixelXLPkg/Binary/HashDxe/HashDxe.efi
+#      SECTION UI = "HashDxe"
+#    }
 
-    FILE DRIVER = A9F91C13-4DF7-3952-6811-F6B4479B3C0C {
-      SECTION PE32 = PixelXLPkg/Binary/Menu/Menu.efi
-      SECTION UI = "Menu"
-    }
+#    FILE DRIVER = A9F91C13-4DF7-3952-6811-F6B4479B3C0C {
+#      SECTION PE32 = PixelXLPkg/Binary/Menu/Menu.efi
+#      SECTION UI = "Menu"
+#    }
 
     FILE DRIVER = 1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609 {
       SECTION PE32 = PixelXLPkg/Binary/PartitionDxe/PartitionDxe.efi
       SECTION UI = "PartitionDxe"
     }
 
-    FILE DRIVER = 484523A5-6A18-463F-EA1D-DE3D740ABADF {
-      SECTION PE32 = PixelXLPkg/Binary/Pgm/Pgm.efi
-      SECTION UI = "Pgm"
-    }
+#    FILE DRIVER = 484523A5-6A18-463F-EA1D-DE3D740ABADF {
+#      SECTION PE32 = PixelXLPkg/Binary/Pgm/Pgm.efi
+#      SECTION UI = "Pgm"
+#    }
 
-    FILE DRIVER = 18EE2360-B353-4520-83C8-45AD241055F2 {
-      SECTION PE32 = PixelXLPkg/Binary/ResetRuntimeDxe/ResetRuntimeDxe.efi
-      SECTION UI = "ResetRuntimeDxe"
-    }
+#    FILE DRIVER = 18EE2360-B353-4520-83C8-45AD241055F2 {
+#      SECTION PE32 = PixelXLPkg/Binary/ResetRuntimeDxe/ResetRuntimeDxe.efi
+#      SECTION UI = "ResetRuntimeDxe"
+#    }
 
-    FILE DRIVER = B0D3689E-11F8-43C6-8ECE-023A29CEC35B {
-      SECTION PE32 = PixelXLPkg/Binary/RngDxe/RngDxe.efi
-      SECTION UI = "RngDxe"
-    }
+#    FILE DRIVER = B0D3689E-11F8-43C6-8ECE-023A29CEC35B {
+#      SECTION PE32 = PixelXLPkg/Binary/RngDxe/RngDxe.efi
+#      SECTION UI = "RngDxe"
+#    }
 
-    FILE DRIVER = 42578984-BBA3-43A0-A412-B8F611022B28 {
-      SECTION PE32 = PixelXLPkg/Binary/RPMBErase/RPMBErase.efi
-      SECTION UI = "RPMBErase"
-    }
+#    FILE DRIVER = 42578984-BBA3-43A0-A412-B8F611022B28 {
+#      SECTION PE32 = PixelXLPkg/Binary/RPMBErase/RPMBErase.efi
+#      SECTION UI = "RPMBErase"
+#    }
 
-    FILE DRIVER = F7B0199C-756B-4972-A48C-4508151D8BBB {
-      SECTION PE32 = PixelXLPkg/Binary/RPMBProvision/RPMBProvision.efi
-      SECTION UI = "RPMBProvision"
-    }
+#    FILE DRIVER = F7B0199C-756B-4972-A48C-4508151D8BBB {
+#      SECTION PE32 = PixelXLPkg/Binary/RPMBProvision/RPMBProvision.efi
+#      SECTION UI = "RPMBProvision"
+#    }
 
-    FILE DRIVER = 5E0EAE60-EAED-4D75-B8BF-EDBBAABC3F09 {
-      SECTION PE32 = PixelXLPkg/Binary/SecurityDxe/SecurityDxe.efi
-      SECTION UI = "SecurityDxe"
-    }
+#    FILE DRIVER = 5E0EAE60-EAED-4D75-B8BF-EDBBAABC3F09 {
+#      SECTION PE32 = PixelXLPkg/Binary/SecurityDxe/SecurityDxe.efi
+#      SECTION UI = "SecurityDxe"
+#    }
 
-    FILE DRIVER = 857A8741-0EEC-43BD-9482-27D14ED47D72 {
-      SECTION PE32 = PixelXLPkg/Binary/SimpleTextInOutSerial/SimpleTextInOutSerial.efi
-      SECTION UI = "SimpleTextInOutSerial"
-    }
+#    FILE DRIVER = 857A8741-0EEC-43BD-9482-27D14ED47D72 {
+#      SECTION PE32 = PixelXLPkg/Binary/SimpleTextInOutSerial/SimpleTextInOutSerial.efi
+#      SECTION UI = "SimpleTextInOutSerial"
+#    }
 
     FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
       SECTION PE32 = PixelXLPkg/Binary/UsbBusDxe/UsbBusDxe.efi
       SECTION UI = "UsbBusDxe"
     }
 
-    FILE DRIVER = F541D663-4A48-40AA-AABF-FF158CCAE34C {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/SmemDxe/SmemDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/SmemDxe/SmemDxe.efi
-      SECTION UI = "SmemDxe"
-    }
+#    FILE DRIVER = F541D663-4A48-40AA-AABF-FF158CCAE34C {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/SmemDxe/SmemDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/SmemDxe/SmemDxe.efi
+#      SECTION UI = "SmemDxe"
+#    }
 
-    FILE DRIVER = 8E9BD160-B184-11DF-94E2-0800200C9A66 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/DALSys/DALSys.depex
-      SECTION PE32 = PixelXLPkg/Binary/DALSys/DALSys.efi
-      SECTION UI = "DALSys"
-    }
+#    FILE DRIVER = 8E9BD160-B184-11DF-94E2-0800200C9A66 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/DALSys/DALSys.depex
+#      SECTION PE32 = PixelXLPkg/Binary/DALSys/DALSys.efi
+#      SECTION UI = "DALSys"
+#    }
 
-    FILE DRIVER = AF9763A2-033B-4109-8E17-56A98D380C92 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/HWIODxeDriver/HWIODxeDriver.depex
-      SECTION PE32 = PixelXLPkg/Binary/HWIODxeDriver/HWIODxeDriver.efi
-      SECTION UI = "HWIODxeDriver"
-    }
+#    FILE DRIVER = AF9763A2-033B-4109-8E17-56A98D380C92 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/HWIODxeDriver/HWIODxeDriver.depex
+#      SECTION PE32 = PixelXLPkg/Binary/HWIODxeDriver/HWIODxeDriver.efi
+#      SECTION UI = "HWIODxeDriver"
+#    }
 
-    FILE DRIVER = 10E193DF-9966-44E7-B17C-59DD831E20FC {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ChipInfo/ChipInfo.depex
-      SECTION PE32 = PixelXLPkg/Binary/ChipInfo/ChipInfo.efi
-      SECTION UI = "ChipInfo"
-    }
+#    FILE DRIVER = 10E193DF-9966-44E7-B17C-59DD831E20FC {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ChipInfo/ChipInfo.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ChipInfo/ChipInfo.efi
+#      SECTION UI = "ChipInfo"
+#    }
 
-    FILE DRIVER = B105211B-BBBD-4ADD-A3B0-D1CF4A52154C {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/PlatformInfoDxeDriver/PlatformInfoDxeDriver.depex
-      SECTION PE32 = PixelXLPkg/Binary/PlatformInfoDxeDriver/PlatformInfoDxeDriver.efi
-      SECTION UI = "PlatformInfoDxeDriver"
-    }
+#    FILE DRIVER = B105211B-BBBD-4ADD-A3B0-D1CF4A52154C {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/PlatformInfoDxeDriver/PlatformInfoDxeDriver.depex
+#      SECTION PE32 = PixelXLPkg/Binary/PlatformInfoDxeDriver/PlatformInfoDxeDriver.efi
+#      SECTION UI = "PlatformInfoDxeDriver"
+#    }
 
+#    FILE DRIVER = 7942A7EB-B7D5-4E2E-B908-831E4DE55B58 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.efi
+#      SECTION UI = "GlinkDxe"
+#    }
 
-    FILE DRIVER = 7942A7EB-B7D5-4E2E-B908-831E4DE55B58 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.efi
-      SECTION UI = "GlinkDxe"
-    }
+#    FILE DRIVER = E43128A8-8692-42B6-8AFA-676158578D18 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ULogDxe/ULogDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ULogDxe/ULogDxe.efi
+#      SECTION UI = "ULogDxe"
+#    }
 
-    FILE DRIVER = E43128A8-8692-42B6-8AFA-676158578D18 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ULogDxe/ULogDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ULogDxe/ULogDxe.efi
-      SECTION UI = "ULogDxe"
-    }
+#    FILE DRIVER = CB29F4D1-7F37-4692-A416-93E82E219711 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/NpaDxe/NpaDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/NpaDxe/NpaDxe.efi
+#      SECTION UI = "NpaDxe"
+#    }
 
-    FILE DRIVER = CB29F4D1-7F37-4692-A416-93E82E219711 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/NpaDxe/NpaDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/NpaDxe/NpaDxe.efi
-      SECTION UI = "NpaDxe"
-    }
+#    FILE DRIVER = 4DB5DEA6-5302-4D1A-8A82-677A683B0D29 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ClockDxe/ClockDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ClockDxe/ClockDxe.efi
+#      SECTION UI = "ClockDxe"
+#    }
 
-    FILE DRIVER = 4DB5DEA6-5302-4D1A-8A82-677A683B0D29 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ClockDxe/ClockDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ClockDxe/ClockDxe.efi
-      SECTION UI = "ClockDxe"
-    }
+#    FILE DRIVER = f10f76db-42c1-533f-34a8-69be24653110 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/SdccDxe/SdccDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/SdccDxe/SdccDxe.efi
+#      SECTION UI = "SdccDxe"
+#    }
 
+#    FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
+#      #SECTION DXE_DEPEX = PixelXLPkg/Binary/UFSDxe/UFSDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/UFSDxe/UFSDxe.efi
+#      SECTION UI = "UFSDxe"
+#    }
 
-    FILE DRIVER = f10f76db-42c1-533f-34a8-69be24653110 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/SdccDxe/SdccDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/SdccDxe/SdccDxe.efi
-      SECTION UI = "SdccDxe"
-    }
+#    FILE DRIVER = 02B01AD5-7E59-43E8-A6D8-238180613A5A {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/EmuVariableRuntimeDxe/EmuVariableRuntimeDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/EmuVariableRuntimeDxe/EmuVariableRuntimeDxe.efi
+#      SECTION UI = "EmuVariableRuntimeDxe"
+#    }
 
-    FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
-      #SECTION DXE_DEPEX = PixelXLPkg/Binary/UFSDxe/UFSDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/UFSDxe/UFSDxe.efi
-      SECTION UI = "UFSDxe"
-    }
+#    FILE DRIVER = 8681CC5A-0DF6-441E-B4B8-E915C538F067 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/DALTLMM/DALTLMM.depex
+#      SECTION PE32 = PixelXLPkg/Binary/DALTLMM/DALTLMM.efi
+#      SECTION UI = "DALTLMM"
+#    }
 
-    FILE DRIVER = 02B01AD5-7E59-43E8-A6D8-238180613A5A {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/EmuVariableRuntimeDxe/EmuVariableRuntimeDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/EmuVariableRuntimeDxe/EmuVariableRuntimeDxe.efi
-      SECTION UI = "EmuVariableRuntimeDxe"
-    }
+#    FILE DRIVER = 04DE8591-D2B3-4077-BBBE-B12070094EB6 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/I2C/I2C.depex
+#      SECTION PE32 = PixelXLPkg/Binary/I2C/I2C.efi
+#      SECTION UI = "I2C"
+#    }
 
+#    FILE DRIVER = 2A7B4BEF-80CD-49E1-B473-374BA4D673FC {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/SPMI/SPMI.depex
+#      SECTION PE32 = PixelXLPkg/Binary/SPMI/SPMI.efi
+#      SECTION UI = "SPMI"
+#    }
 
-    FILE DRIVER = 8681CC5A-0DF6-441E-B4B8-E915C538F067 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/DALTLMM/DALTLMM.depex
-      SECTION PE32 = PixelXLPkg/Binary/DALTLMM/DALTLMM.efi
-      SECTION UI = "DALTLMM"
-    }
+#    FILE DRIVER = 1EB2C89E-CE1C-4D35-A9B7-1DC2F3705101 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/PmicDxe/PmicDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/PmicDxe/PmicDxe.efi
+#      SECTION UI = "PmicDxe"
+#    }
 
-    FILE DRIVER = 04DE8591-D2B3-4077-BBBE-B12070094EB6 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/I2C/I2C.depex
-      SECTION PE32 = PixelXLPkg/Binary/I2C/I2C.efi
-      SECTION UI = "I2C"
-    }
+#    FILE DRIVER = 5A5CB8CA-9382-4E0C-B383-77FB517CD9EB {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/AdcDxe/AdcDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/AdcDxe/AdcDxe.efi
+#      SECTION UI = "AdcDxe"
+#    }
 
-    FILE DRIVER = 2A7B4BEF-80CD-49E1-B473-374BA4D673FC {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/SPMI/SPMI.depex
-      SECTION PE32 = PixelXLPkg/Binary/SPMI/SPMI.efi
-      SECTION UI = "SPMI"
-    }
-
-    FILE DRIVER = 1EB2C89E-CE1C-4D35-A9B7-1DC2F3705101 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/PmicDxe/PmicDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/PmicDxe/PmicDxe.efi
-      SECTION UI = "PmicDxe"
-    }
-
-    FILE DRIVER = 5A5CB8CA-9382-4E0C-B383-77FB517CD9EB {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/AdcDxe/AdcDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/AdcDxe/AdcDxe.efi
-      SECTION UI = "AdcDxe"
-    }
-
-    FILE DRIVER = 5BD181DB-0487-4F1A-AE73-820E165611B3 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ButtonsDxe/ButtonsDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ButtonsDxe/ButtonsDxe.efi
-      SECTION UI = "ButtonsDxe"
-    }
+#    FILE DRIVER = 5BD181DB-0487-4F1A-AE73-820E165611B3 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ButtonsDxe/ButtonsDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ButtonsDxe/ButtonsDxe.efi
+#      SECTION UI = "ButtonsDxe"
+#    }
 
     FILE DRIVER = B8D9777E-D72A-451F-9BDB-BAFB52A68415 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmCpuDxe/ArmCpuDxe.depex
@@ -356,7 +353,7 @@ READ_LOCK_STATUS   = TRUE
       SECTION PE32 = PixelXLPkg/Binary/ArmGicDxe/ArmGicDxe.efi
       SECTION UI = "ArmGicDxe"
     }
-  
+
     FILE DRIVER = 49EA041E-6752-42CA-B0B1-7344FE2546B7 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.depex
       SECTION PE32 = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.efi
@@ -399,11 +396,11 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "MetronomeDxe"
     }
 
-    FILE DRIVER = 93B80004-9FB3-11D4-9A3A-0090273FC14D {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/PcieDxe/PcieDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/PcieDxe/PcieDxe.efi
-      SECTION UI = "PcieDxe"
-    }
+#    FILE DRIVER = 93B80004-9FB3-11D4-9A3A-0090273FC14D {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/PcieDxe/PcieDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/PcieDxe/PcieDxe.efi
+#      SECTION UI = "PcieDxe"
+#    }
 
     FILE DRIVER = 79E4A61C-ED73-4312-94FE-E3E7563362A9 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/PrintDxe/PrintDxe.depex
@@ -411,11 +408,11 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "PrintDxe"
     }
 
-    FILE DRIVER = 5A50AA81-C3AE-4608-A0E3-41A2E69BAF94 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/QcomBds/QcomBds.depex
-      SECTION PE32 = PixelXLPkg/Binary/QcomBds/QcomBds.efi
-      SECTION UI = "QcomBds"
-    }
+#    FILE DRIVER = 5A50AA81-C3AE-4608-A0E3-41A2E69BAF94 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/QcomBds/QcomBds.depex
+#      SECTION PE32 = PixelXLPkg/Binary/QcomBds/QcomBds.efi
+#      SECTION UI = "QcomBds"
+#    }
 
     FILE DRIVER = B336F62D-4135-4A55-AE4E-4971BBF0885D {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/RealTimeClock/RealTimeClock.depex
@@ -429,78 +426,77 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "RuntimeDxe"
     }
 
-    FILE DRIVER = F09AD92E-485C-9CDB-3E05-3385C38F94CC {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/TsensDxe/TsensDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/TsensDxe/TsensDxe.efi
-      SECTION UI = "TsensDxe"
-    }
+#    FILE DRIVER = F09AD92E-485C-9CDB-3E05-3385C38F94CC {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/TsensDxe/TsensDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/TsensDxe/TsensDxe.efi
+#      SECTION UI = "TsensDxe"
+#    }
 
-    FILE DRIVER = 6925FAD3-E243-4B69-AD61-3F978C8ABC60 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/TzDxe/TzDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/TzDxe/TzDxe.efi
-      SECTION UI = "TzDxe"
-    }
+#    FILE DRIVER = 6925FAD3-E243-4B69-AD61-3F978C8ABC60 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/TzDxe/TzDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/TzDxe/TzDxe.efi
+#      SECTION UI = "TzDxe"
+#    }
 
-    FILE DRIVER = CD823A4D-7DEC-4531-AE5D-4134FA4127B8 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbConfigDxe/UsbConfigDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/UsbConfigDxe/UsbConfigDxe.efi
-      SECTION UI = "UsbConfigDxe"
-    }
+#    FILE DRIVER = CD823A4D-7DEC-4531-AE5D-4134FA4127B8 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbConfigDxe/UsbConfigDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/UsbConfigDxe/UsbConfigDxe.efi
+#      SECTION UI = "UsbConfigDxe"
+#    }
 
-    FILE DRIVER = 3299A266-15F0-4346-8318-716336736D3E {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbDeviceDxe/UsbDeviceDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/UsbDeviceDxe/UsbDeviceDxe.efi
-      SECTION UI = "UsbDeviceDxe"
-    }
+#    FILE DRIVER = 3299A266-15F0-4346-8318-716336736D3E {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbDeviceDxe/UsbDeviceDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/UsbDeviceDxe/UsbDeviceDxe.efi
+#      SECTION UI = "UsbDeviceDxe"
+#    }
 
-    FILE DRIVER = 94F8A6A7-DC34-4101-88C1-99179CCEAE83 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbfnDwc3Dxe/UsbfnDwc3Dxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/UsbfnDwc3Dxe/UsbfnDwc3Dxe.efi
-      SECTION UI = "UsbfnDwc3Dxe"
-    }
+#    FILE DRIVER = 94F8A6A7-DC34-4101-88C1-99179CCEAE83 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbfnDwc3Dxe/UsbfnDwc3Dxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/UsbfnDwc3Dxe/UsbfnDwc3Dxe.efi
+#      SECTION UI = "UsbfnDwc3Dxe"
+#    }
 
-    FILE DRIVER = 5AF77F10-90DF-4E7E-8325-A17EC09D5443 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbMsdDxe/UsbMsdDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/UsbMsdDxe/UsbMsdDxe.efi
-      SECTION UI = "UsbMsdDxe"
-    }
+#    FILE DRIVER = 5AF77F10-90DF-4E7E-8325-A17EC09D5443 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/UsbMsdDxe/UsbMsdDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/UsbMsdDxe/UsbMsdDxe.efi
+#      SECTION UI = "UsbMsdDxe"
+#    }
 
     FILE DRIVER = F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.depex
       SECTION PE32 = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.efi
       SECTION UI = "WatchdogTimer"
     }
-
   }
 
-#  INF MdeModulePkg/Core/Dxe/DxeMain.inf
+  INF MdeModulePkg/Core/Dxe/DxeMain.inf
 
   #
   # PI DXE Drivers producing Architectural Protocols (EFI Services)
   #
 
-#  INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-#  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
-#  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
-#  INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-#  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+  INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
+  INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
+  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+  INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
   INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
 
-#  INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
-#  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-#  INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-#  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
-#  INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
-#  INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
+  INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
+  INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+  INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
+  INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+  INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
+  INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
 
   #
   # Multiple Console IO support
   #
-#  INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-#  INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-#  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
+  INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
+  INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   INF MdeModulePkg/Universal/Console/TerminalDxe/TerminalDxe.inf
   INF MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
 
@@ -522,7 +518,7 @@ READ_LOCK_STATUS   = TRUE
   #
   # USB Host Support
   #
-#  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+  INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
 
   #
   # USB Mass Storage Support
@@ -537,11 +533,11 @@ READ_LOCK_STATUS   = TRUE
   #
   # Fastboot
   #
-#  INF EmbeddedPkg/Application/AndroidFastboot/AndroidFastbootApp.inf
+  INF EmbeddedPkg/Application/AndroidFastboot/AndroidFastbootApp.inf
 
-#  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
-#  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
+  INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
 
   #
   # ACPI Support
@@ -579,8 +575,8 @@ READ_LOCK_STATUS   = TRUE
   #
   # Bds
   #
-#  INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
-#  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
+  INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
+  INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF MdeModulePkg/Universal/DisplayEngineDxe/DisplayEngineDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
@@ -592,11 +588,11 @@ READ_LOCK_STATUS   = TRUE
   # Binary DXE drivers from Google Marlin MSM8996
   #
 
-#  INF FatPkg/EnhancedFatDxe/Fat.inf
-#  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+  INF FatPkg/EnhancedFatDxe/Fat.inf
+  INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
   INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
-#  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
-#  INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+  INF MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
+  INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
 
     FILE DRIVER = 90A49AFD-422F-08AE-9611-E788D3804845 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/EnvDxe/EnvDxe.depex
@@ -604,50 +600,50 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "EnvDxe"
     }
 
-    FILE DRIVER = 51CCF399-4FDF-4E55-A45B-E123F84D456A {
-      SECTION PE32 = PixelXLPkg/Binary/ConPlatformDxe/ConPlatformDxe.efi
-      SECTION UI = "ConPlatformDxe"
-    }
+#    FILE DRIVER = 51CCF399-4FDF-4E55-A45B-E123F84D456A {
+#      SECTION PE32 = PixelXLPkg/Binary/ConPlatformDxe/ConPlatformDxe.efi
+#      SECTION UI = "ConPlatformDxe"
+#    }
 
-    FILE DRIVER = 408EDCEC-CF6D-477C-A5A8-B4844E3DE281 {
-      SECTION PE32 = PixelXLPkg/Binary/ConSplitterDxe/ConSplitterDxe.efi
-      SECTION UI = "ConSplitterDxe"
-    }
+#    FILE DRIVER = 408EDCEC-CF6D-477C-A5A8-B4844E3DE281 {
+#      SECTION PE32 = PixelXLPkg/Binary/ConSplitterDxe/ConSplitterDxe.efi
+#      SECTION UI = "ConSplitterDxe"
+#    }
 
-    FILE DRIVER = 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4 {
-      SECTION PE32 = PixelXLPkg/Binary/DiskIoDxe/DiskIoDxe.efi
-      SECTION UI = "DiskIoDxe"
-    }
+#    FILE DRIVER = 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4 {
+#      SECTION PE32 = PixelXLPkg/Binary/DiskIoDxe/DiskIoDxe.efi
+#      SECTION UI = "DiskIoDxe"
+#    }
 
-    FILE DRIVER = D6A2CB7F-6A18-4E2F-B43B-9920A733700A {
-      SECTION PE32 = PixelXLPkg/Binary/DxeCore/DxeCore.efi
-      SECTION UI = "DxeCore"
-    }
+#    FILE DRIVER = D6A2CB7F-6A18-4E2F-B43B-9920A733700A {
+#      SECTION PE32 = PixelXLPkg/Binary/DxeCore/DxeCore.efi
+#      SECTION UI = "DxeCore"
+#    }
 
-    FILE DRIVER = 3CEF354A-3B7A-4519-AD70-72A134698311 {
-      SECTION PE32 = PixelXLPkg/Binary/Ebl/Ebl.efi
-      SECTION UI = "Ebl"
-    }
+#    FILE DRIVER = 3CEF354A-3B7A-4519-AD70-72A134698311 {
+#      SECTION PE32 = PixelXLPkg/Binary/Ebl/Ebl.efi
+#      SECTION UI = "Ebl"
+#    }
 
-    FILE DRIVER = CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600 {
-      SECTION PE32 = PixelXLPkg/Binary/EnglishDxe/EnglishDxe.efi
-      SECTION UI = "EnglishDxe"
-    }
+#    FILE DRIVER = CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600 {
+#      SECTION PE32 = PixelXLPkg/Binary/EnglishDxe/EnglishDxe.efi
+#      SECTION UI = "EnglishDxe"
+#    }
 
-    FILE DRIVER = 9588502A-5370-11E3-8631-D7C5951364C8 {
-      SECTION PE32 = PixelXLPkg/Binary/Fastboot/Fastboot.efi
-      SECTION UI = "Fastboot"
-    }
+#    FILE DRIVER = 9588502A-5370-11E3-8631-D7C5951364C8 {
+#      SECTION PE32 = PixelXLPkg/Binary/Fastboot/Fastboot.efi
+#      SECTION UI = "Fastboot"
+#    }
 
-    FILE DRIVER = 961578FE-B6B7-44C3-AF35-6BC705CD2B1F {
-      SECTION PE32 = PixelXLPkg/Binary/Fat/Fat.efi
-      SECTION UI = "Fat"
-    }
+#    FILE DRIVER = 961578FE-B6B7-44C3-AF35-6BC705CD2B1F {
+#      SECTION PE32 = PixelXLPkg/Binary/Fat/Fat.efi
+#      SECTION UI = "Fat"
+#    }
 
-    FILE DRIVER = CCCB0C28-4B24-11D5-9A5A-0090273FC14D {
-      SECTION PE32 = PixelXLPkg/Binary/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-      SECTION UI = "GraphicsConsoleDxe"
-    }
+#    FILE DRIVER = CCCB0C28-4B24-11D5-9A5A-0090273FC14D {
+#      SECTION PE32 = PixelXLPkg/Binary/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
+#      SECTION UI = "GraphicsConsoleDxe"
+#    }
 
     FILE DRIVER = 3ADF8DDA-1850-44C5-8C63-BB991849BC6F {
       SECTION PE32 = PixelXLPkg/Binary/HashDxe/HashDxe.efi
@@ -659,10 +655,10 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "Menu"
     }
 
-    FILE DRIVER = 1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609 {
-      SECTION PE32 = PixelXLPkg/Binary/PartitionDxe/PartitionDxe.efi
-      SECTION UI = "PartitionDxe"
-    }
+#    FILE DRIVER = 1FA1F39E-FEFF-4AAE-BD7B-38A070A3B609 {
+#      SECTION PE32 = PixelXLPkg/Binary/PartitionDxe/PartitionDxe.efi
+#      SECTION UI = "PartitionDxe"
+#    }
 
     FILE DRIVER = 484523A5-6A18-463F-EA1D-DE3D740ABADF {
       SECTION PE32 = PixelXLPkg/Binary/Pgm/Pgm.efi
@@ -699,10 +695,10 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "SimpleTextInOutSerial"
     }
 
-    FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
-      SECTION PE32 = PixelXLPkg/Binary/UsbBusDxe/UsbBusDxe.efi
-      SECTION UI = "UsbBusDxe"
-    }
+#    FILE DRIVER = 240612B7-A063-11D4-9A3A-0090273FC14D {
+#      SECTION PE32 = PixelXLPkg/Binary/UsbBusDxe/UsbBusDxe.efi
+#      SECTION UI = "UsbBusDxe"
+#    }
 
     FILE DRIVER = F541D663-4A48-40AA-AABF-FF158CCAE34C {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/SmemDxe/SmemDxe.depex
@@ -734,7 +730,6 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "PlatformInfoDxeDriver"
     }
 
-
     FILE DRIVER = 7942A7EB-B7D5-4E2E-B908-831E4DE55B58 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.depex
       SECTION PE32 = PixelXLPkg/Binary/GlinkDxe/GlinkDxe.efi
@@ -759,7 +754,6 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "ClockDxe"
     }
 
-
     FILE DRIVER = f10f76db-42c1-533f-34a8-69be24653110 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/SdccDxe/SdccDxe.depex
       SECTION PE32 = PixelXLPkg/Binary/SdccDxe/SdccDxe.efi
@@ -777,7 +771,6 @@ READ_LOCK_STATUS   = TRUE
       SECTION PE32 = PixelXLPkg/Binary/EmuVariableRuntimeDxe/EmuVariableRuntimeDxe.efi
       SECTION UI = "EmuVariableRuntimeDxe"
     }
-
 
     FILE DRIVER = 8681CC5A-0DF6-441E-B4B8-E915C538F067 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/DALTLMM/DALTLMM.depex
@@ -815,59 +808,59 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "ButtonsDxe"
     }
 
-    FILE DRIVER = B8D9777E-D72A-451F-9BDB-BAFB52A68415 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmCpuDxe/ArmCpuDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ArmCpuDxe/ArmCpuDxe.efi
-      SECTION UI = "ArmCpuDxe"
-    }
+#    FILE DRIVER = B8D9777E-D72A-451F-9BDB-BAFB52A68415 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmCpuDxe/ArmCpuDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ArmCpuDxe/ArmCpuDxe.efi
+#      SECTION UI = "ArmCpuDxe"
+#    }
 
-    FILE DRIVER = DE371F7C-DEC4-4D21-ADF1-593ABCC15882 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmGicDxe/ArmGicDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ArmGicDxe/ArmGicDxe.efi
-      SECTION UI = "ArmGicDxe"
-    }
+#    FILE DRIVER = DE371F7C-DEC4-4D21-ADF1-593ABCC15882 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmGicDxe/ArmGicDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ArmGicDxe/ArmGicDxe.efi
+#      SECTION UI = "ArmGicDxe"
+#    }
   
-    FILE DRIVER = 49EA041E-6752-42CA-B0B1-7344FE2546B7 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.efi
-      SECTION UI = "ArmTimerDxe"
-    }
+#    FILE DRIVER = 49EA041E-6752-42CA-B0B1-7344FE2546B7 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/ArmTimerDxe/ArmTimerDxe.efi
+#     SECTION UI = "ArmTimerDxe"
+#    }
 
-    FILE DRIVER = 55CE7A0C-5598-4B1F-8065-1816F40DCFF2 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/CapsuleRuntimeDxe/CapsuleRuntimeDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/CapsuleRuntimeDxe/CapsuleRuntimeDxe.efi
-      SECTION UI = "CapsuleRuntimeDxe"
-    }
+#    FILE DRIVER = 55CE7A0C-5598-4B1F-8065-1816F40DCFF2 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/CapsuleRuntimeDxe/CapsuleRuntimeDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/CapsuleRuntimeDxe/CapsuleRuntimeDxe.efi
+#      SECTION UI = "CapsuleRuntimeDxe"
+#    }
 
-    FILE DRIVER = 9B680FCE-AD6B-4F3A-B60B-F59899003443 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/DevicePathDxe/DevicePathDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/DevicePathDxe/DevicePathDxe.efi
-      SECTION UI = "DevicePathDxe"
-    }
+#    FILE DRIVER = 9B680FCE-AD6B-4F3A-B60B-F59899003443 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/DevicePathDxe/DevicePathDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/DevicePathDxe/DevicePathDxe.efi
+#      SECTION UI = "DevicePathDxe"
+#    }
 
-    FILE DRIVER = 4138022F-06C7-4F79-9C94-7E33B511A4E7 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/DisplayDxe/DisplayDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/DisplayDxe/DisplayDxe.efi
-      SECTION UI = "DisplayDxe"
-    }
+#    FILE DRIVER = 4138022F-06C7-4F79-9C94-7E33B511A4E7 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/DisplayDxe/DisplayDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/DisplayDxe/DisplayDxe.efi
+#      SECTION UI = "DisplayDxe"
+#    }
 
-    FILE DRIVER = 37795BA0-E1CF-4ED5-BD8B-16DF6BCB1E1A {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.depex
-      SECTION PE32 = PixelXLPkg/Binary/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.efi
-      SECTION UI = "EmbeddedMonotonicCounter"
-    }
+#    FILE DRIVER = 37795BA0-E1CF-4ED5-BD8B-16DF6BCB1E1A {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.depex
+#      SECTION PE32 = PixelXLPkg/Binary/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.efi
+#      SECTION UI = "EmbeddedMonotonicCounter"
+#    }
 
-    FILE DRIVER = 348C4D62-BFBD-4882-9ECE-C80BB1C4783B {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/HiiDatabase/HiiDatabase.depex
-      SECTION PE32 = PixelXLPkg/Binary/HiiDatabase/HiiDatabase.efi
-      SECTION UI = "HiiDatabase"
-    }
+#    FILE DRIVER = 348C4D62-BFBD-4882-9ECE-C80BB1C4783B {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/HiiDatabase/HiiDatabase.depex
+#      SECTION PE32 = PixelXLPkg/Binary/HiiDatabase/HiiDatabase.efi
+#      SECTION UI = "HiiDatabase"
+#    }
 
-    FILE DRIVER = 4C6E0267-C77D-410D-8100-1495911A989D {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/MetronomeDxe/MetronomeDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/MetronomeDxe/MetronomeDxe.efi
-      SECTION UI = "MetronomeDxe"
-    }
+#    FILE DRIVER = 4C6E0267-C77D-410D-8100-1495911A989D {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/MetronomeDxe/MetronomeDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/MetronomeDxe/MetronomeDxe.efi
+#      SECTION UI = "MetronomeDxe"
+#    }
 
     FILE DRIVER = 93B80004-9FB3-11D4-9A3A-0090273FC14D {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/PcieDxe/PcieDxe.depex
@@ -875,11 +868,11 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "PcieDxe"
     }
 
-    FILE DRIVER = 79E4A61C-ED73-4312-94FE-E3E7563362A9 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/PrintDxe/PrintDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/PrintDxe/PrintDxe.efi
-      SECTION UI = "PrintDxe"
-    }
+#    FILE DRIVER = 79E4A61C-ED73-4312-94FE-E3E7563362A9 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/PrintDxe/PrintDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/PrintDxe/PrintDxe.efi
+#      SECTION UI = "PrintDxe"
+#    }
 
     FILE DRIVER = 5A50AA81-C3AE-4608-A0E3-41A2E69BAF94 {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/QcomBds/QcomBds.depex
@@ -887,17 +880,17 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "QcomBds"
     }
 
-    FILE DRIVER = B336F62D-4135-4A55-AE4E-4971BBF0885D {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/RealTimeClock/RealTimeClock.depex
-      SECTION PE32 = PixelXLPkg/Binary/RealTimeClock/RealTimeClock.efi
-      SECTION UI = "RealTimeClock"
-    }
+#    FILE DRIVER = B336F62D-4135-4A55-AE4E-4971BBF0885D {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/RealTimeClock/RealTimeClock.depex
+#      SECTION PE32 = PixelXLPkg/Binary/RealTimeClock/RealTimeClock.efi
+#      SECTION UI = "RealTimeClock"
+#    }
 
-    FILE DRIVER = B601F8C4-43B7-4784-95B1-F4226CB40CEE {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/RuntimeDxe/RuntimeDxe.depex
-      SECTION PE32 = PixelXLPkg/Binary/RuntimeDxe/RuntimeDxe.efi
-      SECTION UI = "RuntimeDxe"
-    }
+#    FILE DRIVER = B601F8C4-43B7-4784-95B1-F4226CB40CEE {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/RuntimeDxe/RuntimeDxe.depex
+#      SECTION PE32 = PixelXLPkg/Binary/RuntimeDxe/RuntimeDxe.efi
+#      SECTION UI = "RuntimeDxe"
+#    }
 
     FILE DRIVER = F09AD92E-485C-9CDB-3E05-3385C38F94CC {
       SECTION DXE_DEPEX = PixelXLPkg/Binary/TsensDxe/TsensDxe.depex
@@ -935,11 +928,11 @@ READ_LOCK_STATUS   = TRUE
       SECTION UI = "UsbMsdDxe"
     }
 
-    FILE DRIVER = F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8 {
-      SECTION DXE_DEPEX = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.depex
-      SECTION PE32 = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.efi
-      SECTION UI = "WatchdogTimer"
-    }
+#    FILE DRIVER = F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8 {
+#      SECTION DXE_DEPEX = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.depex
+#      SECTION PE32 = PixelXLPkg/Binary/WatchdogTimer/WatchdogTimer.efi
+#      SECTION UI = "WatchdogTimer"
+#    }
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
@@ -959,7 +952,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF ArmPlatformPkg/PrePi/PeiUniCore.inf
+  INF PixelXLPkg/PrePi/PeiUniCore.inf
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
@@ -968,5 +961,3 @@ READ_LOCK_STATUS   = TRUE
   }
 
 !include PixelXLPkg/CommonFdf.fdf.inc
-
-
