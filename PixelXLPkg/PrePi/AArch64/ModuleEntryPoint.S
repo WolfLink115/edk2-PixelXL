@@ -7,65 +7,12 @@
 
 #include <AsmMacroIoLibV8.h>
 
-setFBcolor:
-        sub     sp, sp, #48
-        str     x0, [sp, 24]
-        str     x1, [sp, 16]
-        str     x2, [sp, 8]
-        mov     x0, 0x83400000
-        str     x0, [sp, 32]
-        str     wzr, [sp, 44]
-        b       .L2
-.L3:
-        ldrsw   x0, [sp, 44]
-        ldr     x1, [sp, 32]
-        add     x0, x1, x0
-        ldr     x1, [sp, 24]
-        ldrb    w1, [x1]
-        strb    w1, [x0]
-        ldrsw   x0, [sp, 44]
-        add     x0, x0, 1
-        ldr     x1, [sp, 32]
-        add     x0, x1, x0
-        ldr     x1, [sp, 16]
-        ldrb    w1, [x1]
-        strb    w1, [x0]
-        ldrsw   x0, [sp, 44]
-        add     x0, x0, 2
-        ldr     x1, [sp, 32]
-        add     x0, x1, x0
-        ldr     x1, [sp, 8]
-        ldrb    w1, [x1]
-        strb    w1, [x0]
-        ldrsw   x0, [sp, 44]
-        add     x0, x0, 3
-        ldr     x1, [sp, 32]
-        add     x0, x1, x0
-        mov     w1, -1
-        strb    w1, [x0]
-        ldr     w0, [sp, 44]
-        add     w0, w0, 4
-        str     w0, [sp, 44]
-.L2:
-        ldr     w1, [sp, 44]
-        mov     w0, 12582911
-        cmp     w1, w0
-        ble     .L3
-        nop
-        nop
-        add     sp, sp, 48
-        ret
-
 ASM_FUNC(_ModuleEntryPoint)
   stp     x29, x30, [sp, -16]!
   mov     x29, sp
   mov     x2, 0
   mov     x1, 0
   mov     x0, 0
-  bl      setFBcolor
-  nop
-  ldp     x29, x30, [sp], 16
-  ret
 
   // Do early platform specific actions
   bl    ASM_PFX(ArmPlatformPeiBootAction)

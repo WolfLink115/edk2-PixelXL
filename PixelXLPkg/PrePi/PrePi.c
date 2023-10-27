@@ -20,8 +20,6 @@
 #include <Ppi/ArmMpCoreInfo.h>
 #include <Ppi/SecPerformance.h>
 
-#include <Chipset/mdp5.h>
-
 #include "PrePi.h"
 
 #define IS_XIP()  (((UINT64)FixedPcdGet64 (PcdFdBaseAddress) > mSystemMemoryEnd) ||\
