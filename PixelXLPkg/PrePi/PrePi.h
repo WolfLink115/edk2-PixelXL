@@ -21,6 +21,26 @@
 #include <Library/SerialPortLib.h>
 #include <Library/ArmPlatformLib.h>
 
+#define MDP_BASE                    (0x900000)
+#define REG_MDP(off)                (MDP_BASE + (off))
+#define MDP_HW_REV                  REG_MDP(0x1000)
+#define MDP_CTL_0_BASE				      REG_MDP(0x2000)
+
+#define CTL_FLUSH                               0x18
+#define CTL_START                               0x1C
+
+#define MDSS_MDP_REG_PP_SYNC_CONFIG_VSYNC       0x004
+#define MDSS_MDP_REG_PP_AUTOREFRESH_CONFIG      0x030
+
+#define MDSS_MDP_REV(major, minor, step) \
+        ((((major) & 0x000F) << 28) |    \
+         (((minor) & 0x0FFF) << 16) |    \
+         ((step)   & 0xFFFF))
+#define MDSS_MDP_HW_REV_102    MDSS_MDP_REV(1, 2, 0) /* 8974 v2.0 */
+#define MDSS_MDP_HW_REV_105    MDSS_MDP_REV(1, 5, 0) /* 8994 v1.0 */
+
+#define BIT(bit) (1 << (bit))
+
 extern UINT64  mSystemMemoryEnd;
 
 RETURN_STATUS

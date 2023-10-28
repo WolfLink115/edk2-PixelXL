@@ -52,6 +52,30 @@ GetPlatformPpi (
   return EFI_NOT_FOUND;
 }
 
+/* 
+ * Function to enable autorefresh
+ * Based on lk2nd code: https://github.com/msm8916-mainline/lk2nd/blob/master/app/aboot/fastboot-extra.c#L158
+*/
+void 
+EnableAutorefresh()
+{
+  UINT32 Width = 2560;// FIXME: Get from PCD
+	UINT32 vsync_count = 19200000 / (Width * 60); /* 60 fps */
+	UINT32 mdss_mdp_rev = MmioRead32(MDP_HW_REV);
+	UINT32 pp0_base;
+
+	if (mdss_mdp_rev >= MDSS_MDP_HW_REV_105)
+		pp0_base = REG_MDP(0x71000);
+	else if (mdss_mdp_rev >= MDSS_MDP_HW_REV_102)
+		pp0_base = REG_MDP(0x12D00);
+	else
+		pp0_base = REG_MDP(0x21B00);
+
+	MmioWrite32(pp0_base + MDSS_MDP_REG_PP_SYNC_CONFIG_VSYNC, vsync_count | BIT(19));//BIT(19)
+	MmioWrite32(pp0_base + MDSS_MDP_REG_PP_AUTOREFRESH_CONFIG, BIT(31) | 1);//BIT(31)
+	MmioWrite32(MDP_CTL_0_BASE + CTL_START, 1);
+}
+
 VOID
 PrePiMain (
   IN  UINTN   UefiMemoryBase,
@@ -90,8 +114,6 @@ PrePiMain (
                 __DATE__
                 );
   SerialPortWrite ((UINT8 *)Buffer, CharCount);
-
-  MmioWrite32(0x90021C,1);
 
   // Initialize the Debug Agent for Source Level Debugging
   InitializeDebugAgent (DEBUG_AGENT_INIT_POSTMEM_SEC, NULL, NULL);
@@ -175,6 +197,8 @@ CEntryPoint (
   )
 {
   UINT64  StartTimeStamp;
+
+  EnableAutorefresh();
 
   // Initialize the platform specific controllers
   ArmPlatformInitialize (MpId);
