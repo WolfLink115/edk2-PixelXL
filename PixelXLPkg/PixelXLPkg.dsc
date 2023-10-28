@@ -138,9 +138,9 @@
   #
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
 
-  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x80400000
-  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|2560
-  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1440
+  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xc0001000
+  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1440
+  gPixelXLPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
 
