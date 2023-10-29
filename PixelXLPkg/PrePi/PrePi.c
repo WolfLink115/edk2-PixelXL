@@ -52,6 +52,16 @@ GetPlatformPpi (
   return EFI_NOT_FOUND;
 }
 
+void PainScreen(UINT64 Colour)
+{
+  UINT64 *Start = (UINT64 *)0xC0001000;
+  UINT64 *End = (UINT64 *)0xC0801000;  
+
+  for (UINT64 *Ptr = Start; Ptr < End; Ptr++) {
+    *Ptr = Colour;
+  }
+}
+
 /* 
  * Function to enable autorefresh
  * Based on lk2nd code: https://github.com/msm8916-mainline/lk2nd/blob/master/app/aboot/fastboot-extra.c#L158
@@ -59,6 +69,8 @@ GetPlatformPpi (
 void 
 EnableAutorefresh()
 {
+PainScreen(0x55);
+
   UINT32 Width = 2560;// FIXME: Get from PCD
 	UINT32 vsync_count = 19200000 / (Width * 60); /* 60 fps */
 	UINT32 mdss_mdp_rev = MmioRead32(MDP_HW_REV);
